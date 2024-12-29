@@ -15,6 +15,7 @@
         "filehelper.h": "c",
         "buttonuicomponent.h": "c",
         "enginecore.h": "c",
-        "physicsgameobjectcomp.h": "c"
+        "physicsgameobjectcomp.h": "c",
+        "sdl_mixer.h": "c"
     }
 }

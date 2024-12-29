@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cp -r ./assets ./bin/Debug
-
-./premake.sh
+/premake.sh
 make clean
 make config=debug
+
+cp -r ./assets ./bin/Debug

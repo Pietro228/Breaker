@@ -1,2 +1,2 @@
 # Breaker
-A game made for UPR. Made in BeEngineC.
+ A VŠB game project made in BeEngineC.

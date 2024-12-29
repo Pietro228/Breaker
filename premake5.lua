@@ -1,9 +1,9 @@
 -- premake5.lua
-workspace "BeEngine"
+workspace "Breaker"
    configurations { "Debug", "Release" }
 
-project "BeEngine"
-   kind "SharedLib" -- WindowedApp / ConsoleApp
+project "Breaker"
+   kind "ConsoleApp" -- WindowedApp / ConsoleApp
    language "C"
    targetdir "bin/%{cfg.buildcfg}"
    architecture "x86_64"  -- Default architecture
@@ -11,37 +11,21 @@ project "BeEngine"
    filter "system:macosx"
       architecture "arm64"
 
-   files { "include/**.h", "src/**.c" } -- "src/**.h", 
+   files { "src/**.h", "src/**.c" } -- "src/**.h", 
 
-   vpaths {
-      ["Header Files/*"] = { "include/**.h" },
-      ["Source Files/*"] = { "src/**.c" }
+   includedirs {
+      "libs/BeEngine/include"
    }
 
    libdirs {
-      "libs/SDL2/lib",
+      "libs/BeEngine/lib"
    }
-   includedirs {
-      "libs/SDL2/include",
-      "include",
-      "include/ui",
-      "include/ui/components",
-      "include/components"
-   }
-   links { "SDL2", "SDL2_image", "SDL2_ttf", "SDL2_mixer" }
-   defines { "SDL_MAIN_HANDLED" }
 
-   defines {
-         "BEENGINE_VERSION_MAJOR=1", 
-         "BEENGINE_VERSION_MINOR=0", 
-         "BEENGINE_VERSION_PATCH=0", 
-         "BEENGINE_VERSION_BUILD=1" 
-   }
+   links { "BeEngine" }
+   linkoptions { "-rpath", "@executable_path/../../libs/BeEngine/lib" }
 
    filter "configurations:Debug"
-      defines { 
-         "DEBUG"
-      }
+      defines { "DEBUG" }
       symbols "On"
    
    filter {"system:macosx", "configurations:Debug"}

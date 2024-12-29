@@ -4,6 +4,8 @@ obj/
 projectTemplate/
 include/
 libs/
+.vscode/
+.vs/
 
 # MacOS
 .DS_Store

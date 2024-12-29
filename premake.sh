@@ -1,3 +1,5 @@
+mkdir -p ./libs/BeEngine/include
+
 cp -r ../BeEngineC/include/*.h ./libs/BeEngine/include
 cp -r ../BeEngineC/include/components/*.h ./libs/BeEngine/include
 cp -r ../BeEngineC/include/ui/*.h ./libs/BeEngine/include

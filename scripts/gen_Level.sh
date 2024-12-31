@@ -24,7 +24,7 @@ cat << EOT >> ../src/$SOURCE_FILE
 
 Level ${NAME_NCAPITAL} = {.id = ${ID}, .name = "${NAME}", .event_loaded = &_${NAME}_loaded};
 
-void _${NAME_NCAPITAL}_loaded() {
+void _${NAME_CAPITAL}_loaded() {
 
 }
 EOT

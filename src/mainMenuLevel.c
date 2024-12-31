@@ -2,16 +2,16 @@
 
 #include "buttonUIComponent.h"
 #include "engineCore.h"
+#include "gameLevel.h"
 #include "idkLevel.h"
 #include "input.h"
-#include "testLevel.h"
 
-Level mainMenuLevel = {.id = 2, .name = "mainMenuLevel", .event_loaded = &_mainMenuLevel_loaded};
+Level MainMenuLevel = {.id = 2, .name = "mainMenuLevel", .event_loaded = &_MainMenuLevel_loaded};
 
 ButtonUIComponent playButton;
 UICanvas *canvas;
 
-void _mainMenuLevel_loaded() {
+void _MainMenuLevel_loaded() {
     ButtonStyle style = BUTTONSTYLE(newTextureBrush(&COLOR(255, 0, 0), NULL),
                                     newTextureBrush(&COLOR(0, 255, 0), NULL),
                                     newTextureBrush(&COLOR(0, 0, 255), NULL),
@@ -26,5 +26,5 @@ void _mainMenuLevel_loaded() {
 }
 
 void _playButton_clicked(ButtonUIComponent *comp, UICanvas *canvas) {
-    engineCore_loadLevel(&testLevel);
+    engineCore_loadLevel(&GameLevel);
 }

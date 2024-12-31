@@ -2,6 +2,7 @@
 
 #include "BeEngine.h"
 #include "buttonUIComponent.h"
+#include "gameLevel.h"
 #include "gameObject.h"
 #include "level.h"
 #include "list.h"
@@ -14,12 +15,13 @@
 
 int main(int argc, const char *argv[]) {
     EngineOptions options = {
-        .projectName = "Breaker (BeEngine)",
+        .projectName = "Breaker (BeEngineC)",
         .window_x = SDL_WINDOWPOS_CENTERED,
         .window_y = SDL_WINDOWPOS_CENTERED,
-        .window_width = 1920,   // 800
-        .window_height = 1080,  // 600
-        .initialLevel = mainMenuLevel};
+        .window_width = 800,   // 800
+        .window_height = 600,  // 600
+        //.window_flags = SDL_WINDOW_RESIZABLE,
+        .initialLevel = MainMenuLevel};
 
     EngineEvents events = {
         .event_engineInitialized = &event_gameEngineInitialized,

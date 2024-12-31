@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "enginecore.h": "c",
+        "level.h": "c"
+    }
+}

@@ -106,7 +106,7 @@ void drawTest(GameObject *gameObject) {
     renderer_drawFillRectangle(&COLOR(255, 255, 0), &go2->location, &go2->size);
 }
 
-void event_anyInput(SDL_Event *event) {
+void _event_anyInput(SDL_Event *event) {
     SDL_Keycode code = event->key.keysym.sym;
 
     float vel = 500;

@@ -11,6 +11,7 @@
 #define BLOCK_SIZE_X 30
 #define BLOCK_SIZE_X_OFFSET (BLOCK_SIZE_X + BLOCK_SIZE_X / 2)
 #define BLOCK_SIZE_Y 10
+#define BLOCK_SIZE_Y_OFFSET (BLOCK_SIZE_Y * 3)
 #define WALL_WIDTH 10
 #define BALL_SIZE 10
 #define BALL_VELOCITY 300
@@ -38,13 +39,15 @@ void _GameLevel_loaded() {
     GameObjectConstructor blockGObjectConstructor = {.collisionType = COLLISION_BLOCK, .size = VECTOR2(BLOCK_SIZE_X, BLOCK_SIZE_Y)};
 
     for (int i = 0; i < AMOUNT_OF_BLOCKS; i++) {
-        GameObject* blockGObject = level_spawnGameObject(&blockGObjectConstructor, &VECTOR2((viewport.x / 2 - BLOCK_SIZE_X_OFFSET * (AMOUNT_OF_BLOCKS / 2)) + i * BLOCK_SIZE_X_OFFSET + BLOCK_SIZE_X / 4, 50));
+        for (int j = 0; j < 5; j++) {
+            GameObject* blockGObject = level_spawnGameObject(&blockGObjectConstructor, &VECTOR2((viewport.x / 2 - BLOCK_SIZE_X_OFFSET * (AMOUNT_OF_BLOCKS / 2)) + i * BLOCK_SIZE_X_OFFSET + BLOCK_SIZE_X / 4, 50 + j * BLOCK_SIZE_Y_OFFSET));
 
-        CubeGameObjectComp* cubeComp = NEW_GAMEOBJECTCOMP(CubeGameObjectComp);
-        (*cubeComp) = (CubeGameObjectComp){.color = COLOR_RED, .size = VECTOR2(BLOCK_SIZE_X, BLOCK_SIZE_Y)};
-        GAMEOBJECT_ATTACH_COMP(blockGObject, CubeGameObjectComp, cubeComp);
+            CubeGameObjectComp* cubeComp = NEW_GAMEOBJECTCOMP(CubeGameObjectComp);
+            (*cubeComp) = (CubeGameObjectComp){.color = COLOR_PURPLE, .size = VECTOR2(BLOCK_SIZE_X, BLOCK_SIZE_Y)};
+            GAMEOBJECT_ATTACH_COMP(blockGObject, CubeGameObjectComp, cubeComp);
 
-        LIST_ADD(blocks, GameObject*, blockGObject);
+            LIST_ADD(blocks, GameObject*, blockGObject);
+        }
     }
 
     // Walls
@@ -84,10 +87,10 @@ void _GameLevel_loaded() {
 
     // Ball
     GameObjectConstructor ballGObjectConstructor = {
-        .collisionType = COLLISION_BLOCK,
+        .collisionType = COLLISION_OVERLAP,
         .size = VECTOR2(BALL_SIZE, BALL_SIZE),
         .objectType = OBJECT_MOVABLE,
-        .event_hit = &event_ballCollision_hit};
+        .event_beginOverlap = &event_ballCollision_beginOverlap};
 
     ballGObject = level_spawnGameObject(&ballGObjectConstructor, &VECTOR2(viewport.x / 2, viewport.y - 50));
 
@@ -117,18 +120,19 @@ void windowResized(Vector2* newSize) {
     cameraGObject->location.y = newSize->y / 2;
 }
 
-void event_ballCollision_hit(GameObject* self, GameObject* collidedWith, Vector2* normal) {
+void event_ballCollision_beginOverlap(GameObject* self, GameObject* collidedWith) {
     LOG("Ball hit something");
-    return;
+
     int blockIndex = LIST_FIND_INDEX(blocks, GameObject*, , collidedWith);
     if (blockIndex != -1) {
         LOG("Ball hit block");
-        LIST_REMOVE(blocks, GameObject*, blockIndex);
-        level_destroyGameObject(collidedWith);
+        // LIST_REMOVE(blocks, GameObject*, blockIndex);
+        // level_destroyGameObject(collidedWith);
+        collidedWith->location = VECTOR2(-100, 0);
 
-        if (normal->x > 0 || normal->x < 0) {
-            gameObject_setVelocity(ballGObject, &VECTOR2(-ballGObject->velocity.x, ballGObject->velocity.y));
-        } else if (normal->y > 0 || normal->y < 0) {
+        // Použiju SDL_HasIntersection a udělám to jako line trace nahoru, dolů, doleva, doprava a tak zjistím kde hitnul
+        if (self->location.y < collidedWith->location.y + collidedWith->size.y || self->location.y + self->size.y > collidedWith->location.y) {
+            LOG("Ball hit block y");
             gameObject_setVelocity(ballGObject, &VECTOR2(ballGObject->velocity.x, -ballGObject->velocity.y));
         }
 
@@ -144,6 +148,7 @@ void event_ballCollision_hit(GameObject* self, GameObject* collidedWith, Vector2
     if (collidedWith == leftWallGObject || collidedWith == rightWallGObject) {
         LOG("Ball hit lefr or right wall");
         gameObject_setVelocity(ballGObject, &VECTOR2(-ballGObject->velocity.x, ballGObject->velocity.y));
+        // LOG("Unregister result: %d", level_destroyGameObject(collidedWith));
         return;
     }
 

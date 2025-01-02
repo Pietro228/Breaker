@@ -2,7 +2,6 @@
 bin/
 obj/
 projectTemplate/
-include/
 
 # MacOS
 .DS_Store

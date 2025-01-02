@@ -49,7 +49,7 @@ void _testLevel_loaded() {
 
     player = level_spawnGameObject(&playerSpawn, &VECTOR2(100, 10));
 
-    texture = (TextureGameObjectComp){.imagePath = "./assets/textures/saddam.png", .size = VECTOR2(10, 10)};
+    texture = (TextureGameObjectComp){.textureBrush = newTextureBrush(&COLOR_CYAN, "assets/textures/block.png"), .size = VECTOR2(10, 10)};
 
     GAMEOBJECT_ATTACH_COMP(player, PhysicsGameObjectComp, &test);
     GAMEOBJECT_ATTACH_COMP(player, TextureGameObjectComp, &texture);
@@ -70,12 +70,12 @@ void _testLevel_loaded() {
     border1 = (BorderUIComponent){.id = 69, .fillBrush = newTextureBrush(&COLOR_WHITE, NULL), .position = VECTOR2(10, 500), .size = VECTOR2(500, 100)};
     txtBox1 = (TextBoxUIComponent){.id = 420, .position = VECTOR2(500, 250), .size = VECTOR2(500, 100), .font = (Font){.path = "./assets/fonts/AvrileSansUI-Regular.ttf", .size = 50, .color = COLOR_BLACK}, .backgroundBrush = newTextureBrush(&COLOR_WHITE, NULL), .borderBrush = (BorderBrush){.color = COLOR_GRAY, .thickness = 2}, .focusedBorderBrush = (BorderBrush){.color = COLOR_RED, .thickness = 2}, .padding = THICKNESS1(10)};
     txtBox1.horizontalConstraint = CONSTRAINT_CENTERED;
-
-    UICANVAS_ATTACH_COMP(ButtonUIComponent, &btn1, _canvas);
-    UICANVAS_ATTACH_COMP(BorderUIComponent, &border1, _canvas);
-    UICANVAS_ATTACH_COMP(TextUIComponent, &txt1, _canvas);
-    UICANVAS_ATTACH_COMP(TextBoxUIComponent, &txtBox1, _canvas);
-
+    /*
+        UICANVAS_ATTACH_COMP(ButtonUIComponent, &btn1, _canvas);
+        UICANVAS_ATTACH_COMP(BorderUIComponent, &border1, _canvas);
+        UICANVAS_ATTACH_COMP(TextUIComponent, &txt1, _canvas);
+        UICANVAS_ATTACH_COMP(TextBoxUIComponent, &txtBox1, _canvas);
+    */
     go1 = level_spawnGameObject(&((GameObjectConstructor){
                                     .size = VECTOR2(50, 100),
                                     .collisionType = COLLISION_OVERLAP,
@@ -93,7 +93,7 @@ void _testLevel_loaded() {
                                     .collisionType = COLLISION_BLOCK}),
                                 &VECTOR2(500, 100));
 
-    saddam = (TextureGameObjectComp){.imagePath = "./assets/textures/saddam.png", .size = VECTOR2(356, 200)};
+    saddam = (TextureGameObjectComp){.size = VECTOR2(356, 200)};
     GAMEOBJECT_ATTACH_COMP(go3, TextureGameObjectComp, &saddam);
 
     gameObject_attachToGameObject(go3, player);

@@ -13,13 +13,13 @@
 #include "uiCanvas.h"
 #include "uiComponent.h"
 
-int main(int argc, const char *argv[]) {
+int main(int argc, const char* argv[]) {
     EngineOptions options = {
         .projectName = "Breaker (BeEngineC)",
         .window_x = SDL_WINDOWPOS_CENTERED,
         .window_y = SDL_WINDOWPOS_CENTERED,
-        .window_width = 800,   // 800
-        .window_height = 600,  // 600
+        .window_width = 600,   // 800
+        .window_height = 800,  // 600
         //.window_flags = SDL_WINDOW_RESIZABLE,
         .initialLevel = MainMenuLevel};
 

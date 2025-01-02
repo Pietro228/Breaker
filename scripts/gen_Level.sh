@@ -9,7 +9,7 @@ NAME_NCAPITAL=$(echo "$(tr '[:upper:]' '[:lower:]' <<< "${NAME:0:1}")${NAME:1}")
 HEADER_FILE="${NAME_NCAPITAL}.h"
 SOURCE_FILE="${NAME_NCAPITAL}.c"
 
-cat << EOT >> ../src/$HEADER_FILE
+cat << EOT >> ../include/$HEADER_FILE
 #pragma once
 
 #include "level.h"
@@ -22,9 +22,9 @@ cat << EOT >> ../src/$SOURCE_FILE
 
 #include "engineCore.h"
 
-Level ${NAME_NCAPITAL} = {.id = ${ID}, .name = "${NAME}", .event_loaded = &_${NAME}_loaded};
+Level ${NAME} = {.id = ${ID}, .name = "${NAME}", .event_loaded = &_${NAME}_loaded};
 
-void _${NAME_NCAPITAL}_loaded() {
+void _${NAME}_loaded() {
 
 }
 EOT

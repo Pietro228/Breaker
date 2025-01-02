@@ -11,10 +11,11 @@ project "Breaker"
    filter "system:macosx"
       architecture "arm64"
 
-   files { "src/**.h", "src/**.c" } -- "src/**.h", 
+   files { "include/**.h", "src/**.c" } -- "src/**.h", 
 
    includedirs {
-      "libs/BeEngine/include"
+      "libs/BeEngine/include",
+      "include"
    }
 
    libdirs {

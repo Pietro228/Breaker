@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "enginecore.h": "c",
+        "level.h": "c",
+        "mainmenulevel.h": "c",
+        "bitset": "c",
+        "__node_handle": "c",
+        "typeinfo": "c"
+    }
+}

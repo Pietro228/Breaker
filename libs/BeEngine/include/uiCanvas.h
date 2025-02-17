@@ -32,4 +32,4 @@ DEFINE_LIST(UICanvasList, UICanvas *);
     (component)->__event_input = &_##name##_input;           \
     _uiCanvas_attachUIComponent(canvas, component);
 
-void _uiCanvas_attachUIComponent(UICanvas *canvas, void *uiComponent);
+BEENGINE_API void _uiCanvas_attachUIComponent(UICanvas *canvas, void *uiComponent);

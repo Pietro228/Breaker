@@ -16,11 +16,11 @@
         Vector2 worldLocation;                                 \
         Vector2 size;
 
-#define DEFINE_GAMEOBJECTCOMP_END(name)                               \
-    }                                                                 \
-    name;                                                             \
-                                                                      \
-    void _##name##_registered(struct name *comp, GameObject *parent); \
-    void _##name##_tick(struct name *comp, GameObject *parent);       \
-    void _##name##_draw(struct name *comp, GameObject *parent);       \
-    void _##name##_destroyed(struct name *comp, GameObject *parent);
+#define DEFINE_GAMEOBJECTCOMP_END(name)                                            \
+    }                                                                              \
+    name;                                                                          \
+                                                                                   \
+    BEENGINE_API void _##name##_registered(struct name *comp, GameObject *parent); \
+    BEENGINE_API void _##name##_tick(struct name *comp, GameObject *parent);       \
+    BEENGINE_API void _##name##_draw(struct name *comp, GameObject *parent);       \
+    BEENGINE_API void _##name##_destroyed(struct name *comp, GameObject *parent);

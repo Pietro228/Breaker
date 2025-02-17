@@ -2,6 +2,7 @@
 
 #include "SDL.h"
 #include "color.h"
+#include "engineApi.h"
 
 // Type definitions
 typedef struct Thickness {
@@ -30,8 +31,8 @@ typedef struct BorderBrush {
     ((Thickness){left, top, right, bottom})
 
 // Functions
-TextureBrush newTextureBrush(Color *color, char *texturePath);
+BEENGINE_API TextureBrush newTextureBrush(Color *color, char *texturePath);
 
 // Idk jestli jen nechat makra hmmm :thinking:
-Thickness newThickness1(const unsigned int amount);
-Thickness newThickness4(const unsigned int left, const unsigned int top, const unsigned int right, const unsigned int bottom);
+BEENGINE_API Thickness newThickness1(const unsigned int amount);
+BEENGINE_API Thickness newThickness4(const unsigned int left, const unsigned int top, const unsigned int right, const unsigned int bottom);

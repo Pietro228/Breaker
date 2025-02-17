@@ -10,4 +10,4 @@ typedef enum ConstraintType {
     CONSTRAINT_END
 } ConstraintType;
 
-Vector2 constraint_apply(Transform* parentTrans, Transform* childTrans, Thickness* margin, ConstraintType horizontal, ConstraintType vertical);
+BEENGINE_API Vector2 constraint_apply(Transform* parentTrans, Transform* childTrans, Thickness* margin, ConstraintType horizontal, ConstraintType vertical);

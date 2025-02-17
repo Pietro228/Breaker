@@ -1,5 +1,5 @@
 #pragma once
 
-extern int exitRequested;
+BEENGINE_API extern int exitRequested;
 
 int gameLoop_start();

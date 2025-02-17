@@ -1,8 +1,9 @@
 #pragma once
 
-#include <SDL2/SDL.h>
 #include <stdlib.h>
 
+#include "SDL.h"
+#include "engineApi.h"
 #include "gameObject.h"
 #include "input.h"
 #include "level.h"
@@ -43,16 +44,6 @@ typedef struct {
     void (*event_tick)(void*);
 } EventTick;
 
-// Macros
-#ifndef BEENGINE_VERSION_MAJOR
-
-#define BEENGINE_VERSION_MAJOR 1
-#define BEENGINE_VERSION_MINOR 0
-#define BEENGINE_VERSION_PATCH 0
-#define BEENGINE_VERSION_BUILD 1
-
-#endif
-
 #define TRUE 1
 #define FALSE 0
 
@@ -68,20 +59,20 @@ typedef struct {
     (name*)malloc(sizeof(name))
 
 // Public functions
-void engineCore_startGameEngine(EngineOptions* options, EngineEvents* events, int argc, const char* argv[]);
-int engineCore_loadLevel(Level* level);
-void engineCore_setInputFocus(InputFocus focus);
-InputFocus engineCore_getInputFocus();
-void engineCore_setFocusedUIComponent(UICanvas* canvas, void* component);
-UICanvas* engineCore_getFocusedUICanvas();
-void* engineCore_getFocusedUIComponent();
+BEENGINE_API void engineCore_startGameEngine(EngineOptions* options, EngineEvents* events, int argc, const char* argv[]);
+BEENGINE_API int engineCore_loadLevel(Level* level);
+BEENGINE_API void engineCore_setInputFocus(InputFocus focus);
+BEENGINE_API InputFocus engineCore_getInputFocus();
+BEENGINE_API void engineCore_setFocusedUIComponent(UICanvas* canvas, void* component);
+BEENGINE_API UICanvas* engineCore_getFocusedUICanvas();
+BEENGINE_API void* engineCore_getFocusedUIComponent();
 
 // Getters
-EngineCore* getCore();
-Level* getLevel();
-Renderer* getRenderer();
-double getDeltaTime();
-char* getExecutableFolderPath();
+BEENGINE_API EngineCore* getCore();
+BEENGINE_API Level* getLevel();
+BEENGINE_API Renderer* getRenderer();
+BEENGINE_API double getDeltaTime();
+BEENGINE_API char* getExecutableFolderPath();
 
 // Private functions
 void _engineCore_initialize(EngineOptions* _options, EngineEvents* _events);

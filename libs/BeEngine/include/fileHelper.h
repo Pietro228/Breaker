@@ -1,3 +1,3 @@
 #pragma once
 
-void getParentDirectoryPath(const char *path, char *resultPath);
+BEENGINE_API void getParentDirectoryPath(const char *path, char *resultPath);

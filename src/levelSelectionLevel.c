@@ -8,7 +8,6 @@
 Level LevelSelectionLevel = {.id = 103, .name = "LevelSelectionLevel", .event_loaded = &_LevelSelectionLevel_loaded};
 
 TextBoxUIComponent *ballVelocityTextbox;
-GameState gameState;
 
 void _LevelSelectionLevel_loaded() {
     UICanvas *lsCanvas = level_createUICanvas();

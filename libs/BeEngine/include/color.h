@@ -3,6 +3,7 @@
 #include <stdint.h>
 
 #include "SDL.h"
+#include "engineApi.h"
 
 typedef struct Color {
     uint8_t r;
@@ -42,5 +43,5 @@ typedef struct Color {
 #define COLOR_OLIVE COLOR(128, 128, 0)
 #define COLOR_SKYBLUE COLOR(135, 206, 235)
 
-int color_equal(const Color *c1, const Color *c2);
-SDL_Color color_toSDL_Color(const Color *color);
+BEENGINE_API int color_equal(const Color *c1, const Color *c2);
+BEENGINE_API SDL_Color color_toSDL_Color(const Color *color);

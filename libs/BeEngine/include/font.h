@@ -22,5 +22,5 @@ typedef struct TTF_FontCache {
 DEFINE_LIST(TTF_FontCacheList, TTF_FontCache);
 // TTF_FontCacheList -> TTF_FontCache[] -> TTF_FontList -> TTF_Font[]
 
-TTF_Font *font_load(const char *path, const unsigned int size);
+BEENGINE_API TTF_Font *font_load(const char *path, const unsigned int size);
 void font_cleanup();

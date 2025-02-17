@@ -1,3 +1,4 @@
+#include <conio.h>
 #include <stdio.h>
 
 #include "BeEngine.h"
@@ -28,6 +29,8 @@ int main(int argc, const char* argv[]) {
         .event_anyInput = &event_anyInput};
 
     engineCore_startGameEngine(&options, &events, argc, argv);
+
+    getch();
 }
 
 void event_gameEngineInitialized() {

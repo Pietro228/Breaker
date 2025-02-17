@@ -18,13 +18,13 @@ typedef struct Level {
 } Level;
 
 #define DEFINE_LEVEL(name) \
-    Level name;            \
+    extern Level name;     \
     void _##name##_loaded();
 
 #define DECLARE_LEVEL
 
-GameObject* level_spawnGameObject(GameObjectConstructor* gameObjectToSpawn, Vector2* location);
-void level_destroyGameObject(GameObject* gameObject);
-UICanvas* level_createUICanvas();
-void level_destroyUICanvas(UICanvas* canvas);
-void level_focusCamera(CameraGameObjectComp* camera, Vector2* bounds);
+BEENGINE_API GameObject* level_spawnGameObject(GameObjectConstructor* gameObjectToSpawn, Vector2* location);
+BEENGINE_API void level_destroyGameObject(GameObject* gameObject);
+BEENGINE_API UICanvas* level_createUICanvas();
+BEENGINE_API void level_destroyUICanvas(UICanvas* canvas);
+BEENGINE_API void level_focusCamera(CameraGameObjectComp* camera, Vector2* bounds);

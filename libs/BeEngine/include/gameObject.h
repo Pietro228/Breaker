@@ -56,9 +56,9 @@ typedef struct GameObject {
  * \param go Game object.
  * \param component Game object component.
  */
-int _gameObject_attachComponent(GameObject* go, void* component);
+BEENGINE_API int _gameObject_attachComponent(GameObject* go, void* component);
 
 // Public
-void gameObject_attachToGameObject(GameObject* go, GameObject* goParent);
-void gameObject_setVelocity(GameObject* go, Vector2* velocity);
-void gameObject_addVelocity(GameObject* go, Vector2* velocity);
+BEENGINE_API void gameObject_attachToGameObject(GameObject* go, GameObject* goParent);
+BEENGINE_API void gameObject_setVelocity(GameObject* go, Vector2* velocity);
+BEENGINE_API void gameObject_addVelocity(GameObject* go, Vector2* velocity);

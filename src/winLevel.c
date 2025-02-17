@@ -70,7 +70,7 @@ void submitButtonClicked(ButtonUIComponent* button, UICanvas* canvas) {
     FILE* f = fopen(leaderboardPath, "a");
 
     LeaderboardEntry entry = {.score = gameState.score};
-    strlcpy(entry.name, nameTextbox->text, 50);
+    strncpy(entry.name, nameTextbox->text, 50);
 
     fprintf(f, "%s|%d\n", entry.name, entry.score);
 

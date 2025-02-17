@@ -1,6 +1,7 @@
 #pragma once
 
 #include "constraint.h"
+#include "engineApi.h"
 #include "vector2.h"
 #include "visibility.h"
 
@@ -61,17 +62,17 @@
         void (*event_unhovered)(struct name *, UICanvas *);    \
         void (*event_input)(struct name *, UICanvas *);
 
-#define DEFINE_UICOMPONENT_END(name)                                \
-    }                                                               \
-    name;                                                           \
-                                                                    \
-    void _##name##_registered(struct name *comp, UICanvas *canvas); \
-    void _##name##_tick(struct name *comp, UICanvas *canvas);       \
-    void _##name##_draw(struct name *comp, UICanvas *canvas);       \
-    void _##name##_destroyed(struct name *comp, UICanvas *canvas);  \
-    void _##name##_clicked(struct name *comp, UICanvas *canvas);    \
-    void _##name##_pressed(struct name *comp, UICanvas *canvas);    \
-    void _##name##_released(struct name *comp, UICanvas *canvas);   \
-    void _##name##_hovered(struct name *comp, UICanvas *canvas);    \
-    void _##name##_unhovered(struct name *comp, UICanvas *canvas);  \
-    void _##name##_input(struct name *comp, UICanvas *canvas);
+#define DEFINE_UICOMPONENT_END(name)                                             \
+    }                                                                            \
+    name;                                                                        \
+                                                                                 \
+    BEENGINE_API void _##name##_registered(struct name *comp, UICanvas *canvas); \
+    BEENGINE_API void _##name##_tick(struct name *comp, UICanvas *canvas);       \
+    BEENGINE_API void _##name##_draw(struct name *comp, UICanvas *canvas);       \
+    BEENGINE_API void _##name##_destroyed(struct name *comp, UICanvas *canvas);  \
+    BEENGINE_API void _##name##_clicked(struct name *comp, UICanvas *canvas);    \
+    BEENGINE_API void _##name##_pressed(struct name *comp, UICanvas *canvas);    \
+    BEENGINE_API void _##name##_released(struct name *comp, UICanvas *canvas);   \
+    BEENGINE_API void _##name##_hovered(struct name *comp, UICanvas *canvas);    \
+    BEENGINE_API void _##name##_unhovered(struct name *comp, UICanvas *canvas);  \
+    BEENGINE_API void _##name##_input(struct name *comp, UICanvas *canvas);
